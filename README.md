@@ -39,19 +39,43 @@ Desarrollar una aplicación web moderna y responsive para la gestión y visualiz
 
 ### 📁 Estructura del Proyecto
 ```
-DSM_Proyecto_Web/
-├── src/
-│   ├── components/        # Componentes React reutilizables
-│   ├── pages/            # Páginas principales
-│   ├── styles/           # Estilos CSS
-│   ├── assets/           # Recursos estáticos
-│   └── main.tsx          # Punto de entrada
-├── public/               # Archivos públicos
-├── package.json          # Dependencias del proyecto
-├── tsconfig.json         # Configuración TypeScript
-├── vite.config.ts        # Configuración Vite
-└── eslint.config.js      # Reglas ESLint
-```
+- Arquitectura Preliminar de Directorios
+        
+        src/
+        │
+        ├── Features/
+        │
+        │   ├── Authentication/
+        │   │   ├── Domain/
+        │   │   ├── Application/
+        │   │   ├── Infrastructure/
+        │   │   └── View/
+        │
+        │   ├── Movies/
+        │   │   ├── Domain/
+        │   │   ├── Application/
+        │   │   ├── Infrastructure/
+        │   │   └── View/
+        │
+        │   ├── Comments/
+        │   │   ├── Domain/
+        │   │   ├── Application/
+        │   │   ├── Infrastructure/
+        │   │   └── View/
+        │
+        │   ├── Ratings/
+        │   │   ├── Domain/
+        │   │   ├── Application/
+        │   │   ├── Infrastructure/
+        │   │   └── View/
+        │
+        │   └── MovieDetails/
+        │       ├── application/
+        │       └── presentation/
+        │
+        └── Shared/
+            ├── Components/
+            ├── View/
 
 ### 🚀 Scripts Disponibles
 
@@ -75,3 +99,5 @@ DSM_Proyecto_Web/
 - Configuración de SWC para compilación rápida
 - TypeScript strict para mayor seguridad de tipos
 - Ready para despliegue en producción
+
+
