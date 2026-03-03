@@ -1,5 +1,5 @@
-
 import './App.css'
+import LayoutPelicula from './Shared/Layout/LayoutPelicula';
 
 function App() {
 
@@ -8,7 +8,9 @@ function App() {
       <p>
         Hello World!
       </p>
+      <LayoutPelicula />
     </>
+    
   )
 }
 
