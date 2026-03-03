@@ -1,0 +1,49 @@
+.movie-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3; /* formato poster */
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Overlay oscuro */
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover */
+.movie-card:hover img {
+  transform: scale(1.05);
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+/* Badge */
+.movie-badge {
+  background-color: orange;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  width: fit-content;
+  margin-top: 5px;
+}
