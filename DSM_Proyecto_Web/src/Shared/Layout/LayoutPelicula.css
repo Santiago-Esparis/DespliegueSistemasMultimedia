@@ -1,11 +1,96 @@
-.LayoutPelicula {
-  background-color: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.pelicula-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.LayoutPelicula h1 {
-  color: #333;
+/* HEADER */
+.pelicula-header {
+  display: flex;
+  align-items: flex-start;
+  background-color: #0f0f0f;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  gap: 30px;
+}
+
+/* 👇 CUADRO FIJO PARA LA IMAGEN */
+.poster-container {
+  width: 200px;
+  height: 300px;
+  flex-shrink: 0; /* evita que se deforme */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.poster-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mantiene proporción */
+}
+
+/* INFO A LA DERECHA DE LA IMAGEN */
+.pelicula-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 300px;
+}
+
+.pelicula-info h1 {
+  margin: 0 0 10px 0;
+  font-size: 30px;
+  text-align: left;
+}
+
+/* GENERO */
+.peliculas-genero-block {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pelicula-genero {
+  background-color: #1e90ff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* RATING A LA DERECHA */
+.pelicula-rating {
+  background-color: #1e90ff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.rating-number {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.rating-votos {
+  font-size: 12px;
+}
+
+/* SINOPSIS */
+.pelicula-sinopsis {
+  background-color: #e9e9e9;
+  padding: 25px;
+  margin-top: 20px;
+  border-radius: 10px;
+  text-align: left;   /* 👈 IMPORTANTE */
+}
+
+.pelicula-sinopsis h2 {
+  margin-top: 0;
+  text-align: left;   /* 👈 Alinea el título */
+}
+
+.pelicula-sinopsis p {
+  text-align: left;   /* 👈 Alinea el texto */
 }
