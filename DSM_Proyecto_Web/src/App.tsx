@@ -1,28 +1,26 @@
 import './App.css'
-import LayoutPelicula from './Shared/Layout/LayoutPelicula';
 import Header from './Shared/Layout/Header';
 import Footer from './Shared/Layout/Footer';
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './Shared/pages/Home';
+import PeliculaPage from './Shared/pages/PeliculasPage';
 
 function App() {
 
-
-  const [selectedLang, setSelectedLang] = useState('es'); // Estado global del idioma
+  const [selectedLang, setSelectedLang] = useState('es');
 
   return (
     <>
       <Header selectedLang={selectedLang} setSelectedLang={setSelectedLang} />
-      <LayoutPelicula
-        titulo="Kizoku Tensei"
-        imagenUrl="https://bocdn.ecotree.green/blog/0001/01/ad46dbb447cd0e9a6aeecd64cc2bd332b0cbcb79.jpeg?d=960x540"
-        generos={["Anime", "Aventura", "Fantasia"]}
-        rating={4.1}
-        votos={249}
-        sinopsis="Noah, el niño más fuerte del mundo..."
-      />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pelicula/:id" element={<PeliculaPage />} />
+      </Routes>
+
       <Footer />
     </>
-
   )
 }
 

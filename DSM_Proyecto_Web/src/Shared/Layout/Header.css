@@ -1,0 +1,37 @@
+.header {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+/* Bloques principales */
+.header-box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Zona idiomas */
+.lang-container {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Login */
+.login-button {
+    width: 100%;
+}
+
+/* Enlaces */
+.menus {
+    /*border: 1px solid #ccc;
+    border-radius: 6px;*/
+    margin-top: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15px;
+}
