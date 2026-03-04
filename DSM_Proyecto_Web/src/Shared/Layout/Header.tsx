@@ -1,6 +1,8 @@
 import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import "./Header.css";
-import Menus from "../Components/menus";
+import Menus from "../Components/Menus";
+import { useState } from "react";
+import LoginModal from "../Components/LoginModal";
 
 interface HeaderProps {
     selectedLang: string;
@@ -8,6 +10,7 @@ interface HeaderProps {
 }
 
 const Header = ({ selectedLang, setSelectedLang }: HeaderProps) => {
+    const [showLogin, setShowLogin] = useState(false);
 
     return (
         <header className="header">
@@ -58,16 +61,26 @@ const Header = ({ selectedLang, setSelectedLang }: HeaderProps) => {
                                 </Button>
                             </ButtonGroup>
                         </div>
-
-                        <Button variant="primary" className="login-button">
-                            Login
-                        </Button>
-
+                        <div className="login">
+                            <Button
+                                variant="primary"
+                                onClick={() => setShowLogin(true)}>
+                                Login
+                            </Button>
+                            <LoginModal
+                                isOpen={showLogin}
+                                onClose={() => setShowLogin(false)}
+                            />
+                        </div>
                     </Col>
-
                 </Row>
             </Container>
-            <Menus title={["Home", "About", "Contact"]} url={["/", "/about", "/contact"]}></Menus>
+            <Menus menus={[
+                { title: "Home", url: "/" },
+                { title: "Películas", url: "/peliculas" },
+                { title: "Series", url: "/series" },
+                { title: "Mi Lista", url: "/mi-lista" },
+            ]} />
         </header>
 
     );

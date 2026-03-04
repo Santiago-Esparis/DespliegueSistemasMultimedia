@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 interface MovieCardProps {
   id: number;
   titulo: string;
+  sinopsis: string;
   imagenUrl: string;
   etiqueta?: string;
 }
@@ -11,6 +12,7 @@ interface MovieCardProps {
 export default function MovieCard({
   id,
   titulo,
+  sinopsis,
   imagenUrl,
   etiqueta,
 }: MovieCardProps) {
@@ -19,7 +21,8 @@ export default function MovieCard({
       <img src={imagenUrl} alt={titulo} />
 
       <div className="movie-overlay">
-        <h5>{titulo}</h5>
+        <h4>{titulo}</h4>
+        <p className="movie-sinopsis">{sinopsis}</p>
         {etiqueta && <span className="movie-badge">{etiqueta}</span>}
       </div>
     </Link>

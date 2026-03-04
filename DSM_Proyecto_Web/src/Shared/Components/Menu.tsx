@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom";
-type Menu = {
-    title: string;  
-    url: string;
+import { NavLink } from "react-router-dom";
+import "./Menu.css";
+
+type MenuProps = {
+  title: string;
+  url: string;
 };
 
-export default function Menu({ title, url }: Menu) {
-    return (
-        <div className="Menu">
-            <Link to={url}><button>
-                {title}
-            </button></Link>
-        </div>
-    );
+export default function Menu({ title, url }: MenuProps) {
+  return (
+    <NavLink
+      to={url}
+      className={({ isActive }) =>
+        isActive ? "menu-link active" : "menu-link"
+      }
+    >
+      {title}
+    </NavLink>
+  );
 }

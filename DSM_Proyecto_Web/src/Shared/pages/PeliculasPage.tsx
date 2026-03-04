@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import LayoutPelicula from "../Layout/LayoutPelicula";
 
 export default function PeliculaPage() {
