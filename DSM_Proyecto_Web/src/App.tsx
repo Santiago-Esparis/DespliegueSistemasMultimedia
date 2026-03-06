@@ -1,25 +1,25 @@
-
-import { useState } from 'react';
 import './App.css'
-import Footer from './Shared/Layout/Footer'
-import Header from './Shared/Layout/Header'
+import Header from './Shared/Layout/Header';
+import Footer from './Shared/Layout/Footer';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './Shared/pages/Home';
+import PeliculaPage from './Shared/pages/PeliculasPage';
 
 function App() {
 
-
-  const [selectedLang, setSelectedLang] = useState('es'); // Estado global del idioma
+  const [selectedLang, setSelectedLang] = useState('es');
 
   return (
     <>
-
       <Header selectedLang={selectedLang} setSelectedLang={setSelectedLang} />
 
-      <p>
-        Hello World! {selectedLang}
-      </p>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pelicula/:id" element={<PeliculaPage />} />
+      </Routes>
 
-
-      <Footer></Footer>
+      <Footer />
     </>
   )
 }

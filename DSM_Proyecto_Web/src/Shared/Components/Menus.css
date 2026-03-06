@@ -1,0 +1,18 @@
+.menus {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px 0;
+  background-color: #0f0f0f;
+}
+
+/* línea deslizante */
+
+.menu-indicator {
+  position: absolute;
+  bottom: 22px;
+  height: 3px;
+  background-color: #2e86de;
+  transition: all 0.3s ease;
+}
