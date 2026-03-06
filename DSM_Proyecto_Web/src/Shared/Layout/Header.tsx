@@ -61,26 +61,41 @@ const Header = ({ selectedLang, setSelectedLang }: HeaderProps) => {
                                 </Button>
                             </ButtonGroup>
                         </div>
+
+
+
+
                         <div className="login">
+                            
                             <Button
                                 variant="primary"
                                 onClick={() => setShowLogin(true)}>
                                 Login
                             </Button>
+
                             <LoginModal
                                 isOpen={showLogin}
                                 onClose={() => setShowLogin(false)}
                             />
                         </div>
+                    
+                    
+                    
+                    
                     </Col>
                 </Row>
             </Container>
+
+
             <Menus menus={[
                 { title: "Home", url: "/" },
                 { title: "Películas", url: "/peliculas" },
                 { title: "Series", url: "/series" },
                 { title: "Mi Lista", url: "/mi-lista" },
             ]} />
+        
+        
+        
         </header>
 
     );
