@@ -32,6 +32,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
       console.log (response)
 
+      console.log ("Bienvenido: " + response.data.email)
+
     })
     .catch( (error) => console.log("Error de Autentificación: " + error))
 
