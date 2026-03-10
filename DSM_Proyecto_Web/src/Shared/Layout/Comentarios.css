@@ -1,0 +1,46 @@
+.comentarios-container {
+  margin-top: 40px;
+  padding: 25px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+
+/* título */
+
+.comentarios-container h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* lista */
+
+.comentarios-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* cada comentario */
+
+.comentarios-container li {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* usuario */
+
+.comentario-user {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* texto comentario */
+
+.comentario-text {
+  color: #444;
+  line-height: 1.4;
+}

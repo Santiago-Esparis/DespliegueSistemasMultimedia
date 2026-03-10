@@ -20,7 +20,6 @@ export default function LayoutPelicula({
     return (
         <div className="pelicula-container">
 
-            {/* HEADER */}
             <div className="pelicula-header">
 
                 <div className="poster-container">
