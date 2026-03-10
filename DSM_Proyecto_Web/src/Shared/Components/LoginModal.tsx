@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./LoginModal.css";
-import axios from "axios";
+import authenticationService from "../../Features/Authentication/Service/authenticationService";
+import FirebaseAuthenticationRepository from "../../Features/Authentication/Infraestructure/FirebaseAuthenticationRepository";
+import type { User } from "../../Features/Authentication/Domain/User";
 
 type LoginModalProps = {
   isOpen: boolean;
@@ -14,32 +16,22 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   if (!isOpen) return null;
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
 
-    const authData = {
 
-      email: email,
-      password: password,
-      returnSecureToken: true
+    authenticationService(FirebaseAuthenticationRepository).logIn(email, password)
+    .then( (response: User) => {
 
-    }
+        console.log ("Hello World" + response)
 
-
-    axios.post ("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAgLsZsIw1vmISe-YZGjeyJmVIkBQRH7cw", authData)
-    .then( (response) => {
-
-      console.log (response)
-
-      console.log ("Bienvenido: " + response.data.email)
-
+        console.log (response)
+      
     })
-    .catch( (error) => console.log("Error de Autentificación: " + error))
 
-
-    console.log("Login:", email, password);
-
+    
     onClose();
   };
 
