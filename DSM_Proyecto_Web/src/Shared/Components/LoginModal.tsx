@@ -2,17 +2,23 @@ import { useState } from "react";
 import "./LoginModal.css";
 import authenticationService from "../../Features/Authentication/Service/authenticationService";
 import FirebaseAuthenticationRepository from "../../Features/Authentication/Infraestructure/FirebaseAuthenticationRepository";
-import type { User } from "../../Features/Authentication/Domain/User";
+import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
+import Button from "react-bootstrap/esm/Button";
+
 
 type LoginModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  setUserLoged: (booleanStatement: boolean) => void;
+  mode: 'login' | 'signup';
 };
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export default function LoginModal({ isOpen, onClose, setUserLoged, mode }: LoginModalProps) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { setUser } = useAuth();
 
   if (!isOpen) return null;
 
@@ -20,19 +26,27 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-
-
-    authenticationService(FirebaseAuthenticationRepository).logIn(email, password)
-    .then( (response: User) => {
-
-        console.log ("Hello World" + response)
-
-        console.log (response)
-      
-    })
-
-    
-    onClose();
+    if (mode === 'login') {
+      // Lógica login
+      authenticationService(FirebaseAuthenticationRepository)
+        .logIn(email, password)
+        .then((response) => {
+          setUserLoged(true);
+          setUser(response);
+          onClose();
+        })
+        .catch((err) => console.error(err));
+    } else if (mode === 'signup') {
+      // Lógica signup
+      authenticationService(FirebaseAuthenticationRepository)
+        .signUp(email, password)
+        .then((response) => {
+          setUserLoged(true);
+          setUser(response);
+          onClose();
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
@@ -58,9 +72,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit">
-            Login
-          </button>
+          <Button type="submit" variant="primary">
+            {mode === 'login' ? 'Log In' : 'Sign Up'}
+          </Button>
 
         </form>
 

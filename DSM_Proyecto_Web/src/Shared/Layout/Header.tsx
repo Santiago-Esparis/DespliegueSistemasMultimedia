@@ -1,16 +1,34 @@
-import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import { Container, Row, Col, Button, ButtonGroup, Dropdown } from "react-bootstrap";
 import "./Header.css";
 import Menus from "../Components/Menus";
 import { useState } from "react";
 import LoginModal from "../Components/LoginModal";
+import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
 
 interface HeaderProps {
     selectedLang: string;
     setSelectedLang: (lang: string) => void;
+
+    userLoged: boolean;
+    setUserLoged: (booleanStatement: boolean) => void;
+
 }
 
-const Header = ({ selectedLang, setSelectedLang }: HeaderProps) => {
-    const [showLogin, setShowLogin] = useState(false);
+const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: HeaderProps) => {
+
+    const [showAuthModal, setShowAuthModal] = useState(false);
+    const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+
+    const { user, setUser } = useAuth();
+
+
+    // Definimos el menú según si el usuario está logueado
+    const menuItems = [
+        { title: "Home", url: "/" },
+        { title: "Películas", url: "/peliculas" },
+        { title: "Series", url: "/series" },
+        ...(userLoged ? [{ title: "Mi Lista", url: "/mi-lista" }] : []), // Solo si hay usuario
+    ];
 
     return (
         <header className="header">
@@ -63,39 +81,85 @@ const Header = ({ selectedLang, setSelectedLang }: HeaderProps) => {
                         </div>
 
 
+                        <Row className="mt-2">
+                            <div className="d-flex gap-2 justify-content-center">
+
+                                {!userLoged ? (
+
+                                    <>
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                setAuthMode('login');
+                                                setShowAuthModal(true);
+                                            }}
+                                        >
+                                            Log In
+                                        </Button>
+
+                                        <Button
+                                            variant="outline-primary"
+                                            onClick={() => {
+                                                setAuthMode('signup');
+                                                setShowAuthModal(true);
+                                            }}
+                                        >
+                                            Sign Up
+                                        </Button>
+
+                                        <LoginModal
+                                            isOpen={showAuthModal}
+                                            mode={authMode}
+                                            onClose={() => setShowAuthModal(false)}
+                                            setUserLoged={setUserLoged}
+                                        />
+                                    </>
+
+                                ) : (
+
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="success">
+                                            Bienvenido {user?.email}
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+
+                                            <Dropdown.Item>
+                                                Preferencias
+                                            </Dropdown.Item>
+
+                                            <Dropdown.Divider />
+
+                                            <Dropdown.Item
+                                                className="text-danger"
+                                                onClick={() => {
+                                                    setUserLoged(false);
+                                                    setUser(null);
+                                                }}
+                                            >
+                                                Logout
+                                            </Dropdown.Item>
+
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+
+                                )}
+
+                            </div>
+                        </Row>
 
 
-                        <div className="login">
-                            
-                            <Button
-                                variant="primary"
-                                onClick={() => setShowLogin(true)}>
-                                Login
-                            </Button>
 
-                            <LoginModal
-                                isOpen={showLogin}
-                                onClose={() => setShowLogin(false)}
-                            />
-                        </div>
-                    
-                    
-                    
-                    
+
                     </Col>
                 </Row>
             </Container>
 
+            {/* Menú dinámico */}
+            <Menus menus={menuItems} />
 
-            <Menus menus={[
-                { title: "Home", url: "/" },
-                { title: "Películas", url: "/peliculas" },
-                { title: "Series", url: "/series" },
-                { title: "Mi Lista", url: "/mi-lista" },
-            ]} />
-        
-        
-        
+
+
         </header>
 
     );
