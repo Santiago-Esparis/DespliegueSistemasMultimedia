@@ -6,6 +6,8 @@ import LoginModal from "../Components/LoginModal";
 import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
 import movieService from "../../Features/Movie/Service/movieService";
 import FirebaseMovieRepository from "../../Features/Movie/Infraestructure/FirebaseMovieRepository";
+import commentService from "../../Features/Comments/Service/commentService";
+import FirebaseCommentRepository from "../../Features/Comments/Infraestructure/FirebaseCommentRepository";
 
 interface HeaderProps {
     selectedLang: string;
@@ -172,7 +174,18 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
                         .catch((err) => console.error(err));
                 }}
             >
-                Get All
+                Get All Movies
+            </Button>
+
+            <Button
+                variant="outline-primary"
+                onClick={() => {
+                    commentService(FirebaseCommentRepository).getAll().then((response) => {
+                        console.log(response)
+                    }).catch((err) => console.error(err));
+                }}
+            >
+                Get All Comments
             </Button>
 
 
