@@ -10,6 +10,7 @@ export default function Home() {
       titulo: "Baki-dou",
       imagenUrl: "https://bocdn.ecotree.green/blog/0001/01/ad46dbb447cd0e9a6aeecd64cc2bd332b0cbcb79.jpeg?d=960x540",
       sinopsis: "Baki Hanma, el luchador más fuerte del mundo, se enfrenta a un nuevo desafío: su padre, Yujiro Hanma, ha sido secuestrado por una organización misteriosa. Para rescatarlo, Baki debe enfrentarse a los miembros de esta organización, cada uno con habilidades únicas y letales. A medida que avanza en su misión, Baki descubre secretos ocultos sobre su familia y su propio poder.",
+      rating: 3.3,
       etiqueta: "OVA",
     },
     { id: 2, titulo: "Otra", sinopsis: "Sinopsis de la película 2", imagenUrl: "https://bocdn.ecotree.green/blog/0001/01/ad46dbb447cd0e9a6aeecd64cc2bd332b0cbcb79.jpeg?d=960x540" },
