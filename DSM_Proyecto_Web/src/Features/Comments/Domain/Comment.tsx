@@ -2,7 +2,7 @@
 
 export interface Comment {
 
-    id: string,
+    id?: string,
 
     idMovie: string,
     idUser: string,

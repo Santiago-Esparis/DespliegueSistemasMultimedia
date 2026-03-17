@@ -7,9 +7,12 @@ export interface Movie {
 
     title: string,
     director: string,
+    description: string,
 
-    categories: string,
+    categories: string[],
     releaseDate: string,
 
-    rating: number
+    rating: number,
+
+    url: string
 }

@@ -20,9 +20,11 @@ const FirebaseMovieRepository: MovieRepository = {
                     id: key,
                     title: response.data[key].title,
                     director: response.data[key].director,
+                    description: response.data[key].description,
                     categories: response.data[key].categories,
                     releaseDate: response.data[key].releaseDate,
-                    rating: response.data[key].rating
+                    rating: response.data[key].rating,
+                    url: response.data[key].url
                 })
             }
 

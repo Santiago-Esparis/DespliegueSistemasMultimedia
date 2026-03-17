@@ -12,7 +12,7 @@ const FirebaseAuthenticationRepository: UserRepository = {
             email: email,
             password: password,
             returnSecureToken: true
-
+ 
         }
 
         try {

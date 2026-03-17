@@ -6,28 +6,42 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Shared/pages/Home';
 import PeliculaPage from './Shared/pages/PeliculasPage';
 
-
 import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
+import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';
+import { Button } from 'react-bootstrap';
 
 
 function AppContent() {
 
   const [selectedLang, setSelectedLang] = useState('es');
-  const [userLoged, setUserLoged] = useState(false)
+  const [userLoged, setUserLoged] = useState(false);
+
+  const { movies } = useMovies();
+
 
   //const {user} = useAuth();
 
   return (
     <>
 
-        <Header selectedLang={selectedLang} setSelectedLang={setSelectedLang} userLoged={userLoged} setUserLoged={setUserLoged} />
+      <Header selectedLang={selectedLang} setSelectedLang={setSelectedLang} userLoged={userLoged} setUserLoged={setUserLoged} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pelicula/:id" element={<PeliculaPage />} />
-        </Routes>
 
-        <Footer />
+      <Button
+        variant="outline-primary"
+        onClick={() => {
+              console.log(movies);
+        }}
+      >
+        Help -- Click en Get All Movies y traes la base de datos a App.tsx
+      </Button>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pelicula/:id" element={<PeliculaPage />} />
+      </Routes>
+
+      <Footer />
 
     </>
   )
@@ -37,7 +51,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <AppContent />
+      <MovieProvider>
+        <AppContent />
+      </MovieProvider>
     </AuthProvider>
   )
 }
