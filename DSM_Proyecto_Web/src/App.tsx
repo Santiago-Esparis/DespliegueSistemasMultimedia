@@ -3,8 +3,8 @@ import Header from './Shared/Layout/Header';
 import Footer from './Shared/Layout/Footer';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './Shared/pages/Home';
-import PeliculaPage from './Shared/pages/PeliculasPage';
+import Home from './Features/Movie/View/Home';
+import PeliculaPage from './Features/Movie/View/PeliculasPage';
 
 import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
 import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';

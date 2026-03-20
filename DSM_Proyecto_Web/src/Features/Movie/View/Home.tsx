@@ -1,4 +1,4 @@
-import MovieCard from "../Components/MovieCard";
+import MovieCard from "../Application/MovieCard";
 import "./Home.css";
 
 export default function Home() {

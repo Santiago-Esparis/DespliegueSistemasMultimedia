@@ -2,7 +2,7 @@ import { Container, Row, Col, Button, ButtonGroup, Dropdown } from "react-bootst
 import "./Header.css";
 import Menus from "../Components/Menus";
 import { useState } from "react";
-import LoginModal from "../Components/LoginModal";
+import LoginModal from "../../Features/Authentication/Application/LoginModal";
 import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
 import movieService from "../../Features/Movie/Service/movieService";
 import FirebaseMovieRepository from "../../Features/Movie/Infraestructure/FirebaseMovieRepository";

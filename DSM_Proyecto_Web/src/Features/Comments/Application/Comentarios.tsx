@@ -1,5 +1,5 @@
 import "./Comentarios.css";
-import Comentario from "../Components/Comentario";
+import Comentario from "./Comentario";
 
 type ComentariosProps = {
     comentarios: {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./LoginModal.css";
-import authenticationService from "../../Features/Authentication/Service/authenticationService";
-import FirebaseAuthenticationRepository from "../../Features/Authentication/Infraestructure/FirebaseAuthenticationRepository";
-import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
+import authenticationService from "../Service/authenticationService";
+import FirebaseAuthenticationRepository from "../Infraestructure/FirebaseAuthenticationRepository";
+import { useAuth } from "../Domain/AuthContext";
 import Button from "react-bootstrap/esm/Button";
 
 

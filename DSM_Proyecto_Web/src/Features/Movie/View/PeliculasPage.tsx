@@ -1,5 +1,5 @@
-import LayoutPelicula from "../Layout/LayoutPelicula";
-import Comentarios from "../Layout/Comentarios";
+import LayoutPelicula from "./LayoutPelicula";
+import Comentarios from "../../Comments/Application/Comentarios";
 
 export default function PeliculaPage() {
 
