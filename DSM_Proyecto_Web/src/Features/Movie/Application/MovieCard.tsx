@@ -11,6 +11,12 @@ interface MovieCardProps {
   etiqueta?: string[];
 }
 
+function truncateWords(text: string, maxLength: number) {
+  if (text.length <= maxLength) return text;
+  const truncated = text.slice(0, maxLength);
+  return truncated.slice(0, truncated.lastIndexOf(" ")) + "...";
+}
+
 export default function MovieCard({
   id,
   titulo,
@@ -25,7 +31,8 @@ export default function MovieCard({
 
       <div className="movie-overlay">
         <h4>{titulo}</h4>
-        <p className="movie-sinopsis">{sinopsis}</p>
+        <p></p>
+        <p className="movie-sinopsis">{truncateWords(sinopsis, 100)}</p>
         <StarsRating rating={rating || 0} />
         {etiqueta && <span className="movie-badge">{etiqueta[0]}</span>}
       </div>

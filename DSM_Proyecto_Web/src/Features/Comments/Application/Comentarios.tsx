@@ -1,11 +1,9 @@
 import "./Comentarios.css";
 import Comentario from "./Comentario";
+import type { Comment } from "../Domain/Comment";
 
 type ComentariosProps = {
-    comentarios: {
-        userid: string;
-        comentario: string;
-    }[];
+    comentarios: Comment[];
 };
 
 export default function Comentarios({ comentarios }: ComentariosProps) {
@@ -13,11 +11,11 @@ export default function Comentarios({ comentarios }: ComentariosProps) {
         <div className="comentarios-container">
             <h2>Comentarios</h2>
             <ul>
-                {comentarios.map((c, index) => (
+                {comentarios.map((c) => (
                     <Comentario
-                        key={index}
-                        userid={c.userid}
-                        comentario={c.comentario}
+                        key={c.id}
+                        userid={c.idUser}
+                        comentario={c.comment}
                     />
                 ))}
             </ul>

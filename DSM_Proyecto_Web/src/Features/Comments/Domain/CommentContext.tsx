@@ -1,12 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import type { Comment } from "./Comment";
 
 
 
 
 type CommentContextType = {
-    comment: Comment | null;
-    setComment: (comment: Comment | null) => void;
+    comments: Comment[] | null;
+    setComments: (comments: Comment[] | null) => void;
 }
 
 
@@ -14,11 +14,23 @@ const CommentContext = createContext<CommentContextType | undefined>(undefined);
 
 export function CommentProvider ({ children }: { children: React.ReactNode }) {
 
-    const [comment, setComment] = useState <Comment | null>(null);
+    const [comments, setComments] = useState <Comment[] | null>(null);
 
     return (
-        <CommentContext.Provider value={{ comment, setComment }}>
+        <CommentContext.Provider value={{ comments, setComments }}>
             {children}
         </CommentContext.Provider>
     )
+}
+ 
+
+export function useComments () {
+
+    const context = useContext(CommentContext);
+
+    if (!context) {
+        throw new Error("useMovies debe usarse dentro de MovieProvider");
+    }
+
+    return context;
 }

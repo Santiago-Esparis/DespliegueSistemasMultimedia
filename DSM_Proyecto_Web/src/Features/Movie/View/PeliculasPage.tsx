@@ -1,41 +1,56 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import LayoutPelicula from "./LayoutPelicula";
+import { useMovies } from "../Domain/MovieContext";
 import Comentarios from "../../Comments/Application/Comentarios";
+import commentService from "../../Comments/Service/commentService";
+import { useComments } from "../../Comments/Domain/CommentContext";
+import FirebaseCommentRepository from "../../Comments/Infraestructure/FirebaseCommentRepository";
+
+
 
 export default function PeliculaPage() {
 
-  const pelicula = {
-    titulo: "Kizoku Tensei",
-    //imagenUrl: "https://bocdn.ecotree.green/blog/0001/01/ad46dbb447cd0e9a6aeecd64cc2bd332b0cbcb79.jpeg?d=960x540",
-    imagenUrl: "../Images/Peliculas/OnePiece.jpg",
-    generos: ["Anime", "Aventura", "Fantasia"],
-    rating: 4.1,
-    votos: 249,
-    sinopsis: "Noah, el niño más fuerte del mundo..."
-  };
+  const { id } = useParams<{ id: string }>();
 
-  const comentarios = [
-    {
-      userid: "Juan",
-      comentario: "Muy buena película, la animación me sorprendió bastante."
-    },
-    {
-      userid: "Ana",
-      comentario: "La historia es interesante aunque el ritmo podría ser mejor."
-    },
-    {
-      userid: "Pedro",
-      comentario: "Los personajes están muy bien desarrollados, me gustó mucho."
-    },
-    {
-      userid: "Laura",
-      comentario: "El opening es increíble, definitivamente veré más episodios."
-    }
-  ];
+  // Manejo de undefined
+  if (!id) {
+    return <div>Película no encontrada</div>;
+  }
+
+  const movieID = id;
+
+
+  const { movies } = useMovies();
+  const { comments, setComments } = useComments();
+
+
+  useEffect(() => {
+    commentService(FirebaseCommentRepository)
+      .getByID(movieID)
+      .then((response) => {
+
+        setComments(response)
+
+      }).catch((err) => console.error(err));
+  }, [movieID])
+
 
   return (
     <>
-      <LayoutPelicula {...pelicula} />
-      <Comentarios comentarios={comentarios} />
+
+      <LayoutPelicula
+        titulo={movies[Number(movieID)].title}
+        imagenUrl={movies[Number(movieID)].url}
+        generos={movies[Number(movieID)].categories}
+        rating={movies[Number(movieID)].rating}
+        votos={0}
+        sinopsis={movies[Number(movieID)].description}
+      />
+
+      <Comentarios
+        comentarios={comments ?? []}  // Si comments = null --> array vacio
+      />
     </>
   );
 

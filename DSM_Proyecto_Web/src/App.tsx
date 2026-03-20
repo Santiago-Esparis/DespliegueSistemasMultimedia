@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
 import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';
+import { CommentProvider } from './Features/Comments/Domain/CommentContext';
 import AppRoutes from './Shared/Layout/AppRoutes';
 import movieService from './Features/Movie/Service/movieService';
 import FirebaseMovieRepository from './Features/Movie/Infraestructure/FirebaseMovieRepository';
@@ -48,7 +49,9 @@ function App() {
   return (
     <AuthProvider>
       <MovieProvider>
-        <AppContent />
+        <CommentProvider>
+          <AppContent />
+        </CommentProvider>
       </MovieProvider>
     </AuthProvider>
   )
