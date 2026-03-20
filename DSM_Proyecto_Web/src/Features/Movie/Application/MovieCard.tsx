@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import StarsRating from "../../Ratings/Application/Starsrating";
 
 interface MovieCardProps {
-  id: number;
+  id: string;
   titulo: string;
   sinopsis: string;
   imagenUrl: string;
   rating?: number;
-  etiqueta?: string;
+  etiqueta?: string[];
 }
 
 export default function MovieCard({
@@ -26,8 +26,8 @@ export default function MovieCard({
       <div className="movie-overlay">
         <h4>{titulo}</h4>
         <p className="movie-sinopsis">{sinopsis}</p>
-        <StarsRating rating={rating || 0}  />
-        {etiqueta && <span className="movie-badge">{etiqueta}</span>}
+        <StarsRating rating={rating || 0} />
+        {etiqueta && <span className="movie-badge">{etiqueta[0]}</span>}
       </div>
     </Link>
   );

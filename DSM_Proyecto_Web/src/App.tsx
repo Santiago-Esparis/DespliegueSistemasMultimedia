@@ -1,14 +1,13 @@
 import './App.css'
 import Header from './Shared/Layout/Header';
 import Footer from './Shared/Layout/Footer';
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from './Features/Movie/View/Home';
-import PeliculaPage from './Features/Movie/View/PeliculasPage';
+import { useEffect, useState } from 'react';
 
 import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
 import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';
-import { Button } from 'react-bootstrap';
+import AppRoutes from './Shared/Layout/AppRoutes';
+import movieService from './Features/Movie/Service/movieService';
+import FirebaseMovieRepository from './Features/Movie/Infraestructure/FirebaseMovieRepository';
 
 
 function AppContent() {
@@ -16,30 +15,27 @@ function AppContent() {
   const [selectedLang, setSelectedLang] = useState('es');
   const [userLoged, setUserLoged] = useState(false);
 
-  const { movies } = useMovies();
+  // Petición y Carga de Peliculas por defecto
+  const { setMovies } = useMovies();
 
+  useEffect(() => {
+    movieService(FirebaseMovieRepository)
+      .getAll()
+      .then((response) => {
 
-  //const {user} = useAuth();
+        setMovies(response);
+
+      })
+      .catch((err) => console.error(err))
+  }, []);
+
 
   return (
     <>
 
       <Header selectedLang={selectedLang} setSelectedLang={setSelectedLang} userLoged={userLoged} setUserLoged={setUserLoged} />
 
-
-      <Button
-        variant="outline-primary"
-        onClick={() => {
-              console.log(movies);
-        }}
-      >
-        Help -- Click en Get All Movies y traes la base de datos a App.tsx
-      </Button>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pelicula/:id" element={<PeliculaPage />} />
-      </Routes>
+      <AppRoutes />
 
       <Footer />
 
