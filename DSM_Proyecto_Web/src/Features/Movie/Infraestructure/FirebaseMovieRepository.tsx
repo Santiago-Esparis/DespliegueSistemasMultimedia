@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 const FirebaseMovieRepository: MovieRepository = {
-
+ 
     getAll: async () => {
  
         try {
@@ -24,6 +24,7 @@ const FirebaseMovieRepository: MovieRepository = {
                     categories: response.data[key].categories,
                     releaseDate: response.data[key].releaseDate,
                     rating: response.data[key].rating,
+                    ratingVotes: response.data[key].ratingVotes,
                     url: response.data[key].url
                 })
             }

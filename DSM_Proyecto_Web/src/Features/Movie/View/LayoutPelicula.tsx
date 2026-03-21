@@ -1,6 +1,10 @@
+
+import { useAuth } from "../../Authentication/Domain/AuthContext";
 import "./LayoutPelicula.css";
+import { useFavouriteList } from "../Domain/FavouriteListContext";
 
 type LayoutPeliculaProps = {
+    movieID: string;
     titulo: string;
     imagenUrl: string;
     generos: string[];
@@ -10,6 +14,7 @@ type LayoutPeliculaProps = {
 };
 
 export default function LayoutPelicula({
+    movieID,
     titulo,
     imagenUrl,
     generos,
@@ -17,6 +22,31 @@ export default function LayoutPelicula({
     votos,
     sinopsis,
 }: LayoutPeliculaProps) {
+
+
+    const { user } = useAuth();
+    const { favouriteList } = useFavouriteList();
+
+    const isFav = favouriteList?.movieID.includes(movieID) ?? false;
+    
+    const showFavouriteButton = !!user;
+    const handlerAgregarFavorito = () => {
+
+        if (!user) return;
+
+        console.log("Agregar a favoritos: ", titulo, " usuario: ", user.email)
+
+    }
+
+    const handlerQuitarFavorito = () => {
+
+        if (!user) return;
+
+        console.log("Quitar de favoritos: ", titulo, " usuario: ", user.email)
+
+    }
+
+
     return (
         <div className="pelicula-container">
 
@@ -43,6 +73,17 @@ export default function LayoutPelicula({
                     <div className="rating-votos">{votos} votos</div>
                 </div>
 
+                {showFavouriteButton && (
+                    isFav ? (
+                        <button className="btn-favorito quitar" onClick={handlerQuitarFavorito}>
+                            ❌ Quitar de favoritos
+                        </button>
+                    ) : (
+                        <button className="btn-favorito" onClick={handlerAgregarFavorito}>
+                            ❤️ Añadir a favoritos
+                        </button>
+                    )
+                )}
             </div>
 
             {/* SINOPSIS */}

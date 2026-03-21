@@ -13,6 +13,7 @@ export interface Movie {
     releaseDate: string,
 
     rating: number,
+    ratingVotes: number,
 
     url: string
-}
+} 

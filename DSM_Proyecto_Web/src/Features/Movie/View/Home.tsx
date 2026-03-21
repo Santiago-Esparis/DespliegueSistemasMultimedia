@@ -1,7 +1,7 @@
 
 import "./Home.css";
 import { useEffect } from "react";
-import MovieCard from "../Application/MovieCard";
+import MovieCard from "./MovieCard";
 import { useMovies } from "../Domain/MovieContext";
 import movieService from "../Service/movieService";
 import FirebaseMovieRepository from "../Infraestructure/FirebaseMovieRepository";
@@ -44,4 +44,4 @@ export default function Home() {
     </div>
   );
 
-}
+} 

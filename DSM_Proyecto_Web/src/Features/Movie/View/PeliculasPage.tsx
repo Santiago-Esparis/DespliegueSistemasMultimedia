@@ -40,11 +40,12 @@ export default function PeliculaPage() {
     <>
 
       <LayoutPelicula
+        movieID={movieID}
         titulo={movies[Number(movieID)].title}
         imagenUrl={movies[Number(movieID)].url}
         generos={movies[Number(movieID)].categories}
         rating={movies[Number(movieID)].rating}
-        votos={0}
+        votos={movies[Number(movieID)].ratingVotes}
         sinopsis={movies[Number(movieID)].description}
       />
 

@@ -3,7 +3,7 @@ import { useMovies } from "../Domain/MovieContext";
 import "./SeriesView.css"
 import movieService from "../Service/movieService";
 import FirebaseMovieRepository from "../Infraestructure/FirebaseMovieRepository";
-import MovieCard from "../Application/MovieCard";
+import MovieCard from "./MovieCard";
 
 
 

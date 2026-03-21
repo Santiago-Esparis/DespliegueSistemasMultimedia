@@ -77,3 +77,14 @@
   border-radius: 10px;
   padding: 12px;
 }
+
+.comentario-edit-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.comentario-edit-actions button {
+  padding: 5px 10px;
+  font-size: 13px;
+}
