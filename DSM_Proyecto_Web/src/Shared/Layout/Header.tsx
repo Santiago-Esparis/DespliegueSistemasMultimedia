@@ -214,12 +214,12 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
                 onClick={() => {
 
                     let newComment: Comment = {
-                    
                         idMovie: "6",
                         idUser: "ji7eKK8Vj3bjWYqk8z9DnbjeGku2", // id del admin@admin.es
 
                         commentDate: "15/05/2025",
-                        comment: "Buen anime, gracias por subirlo"
+                        comment: "Buen anime, gracias por subirlo",
+                        userEmail: "admin@admin.es"
                     }
 
                     let idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjczMmNhOTY3MTNiMWRkMTcyMzg1MDg0Y2U5ZjQzODFhZDAwY2VjZTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJveWVjdG8tZHNtLTI2IiwiYXVkIjoicHJveWVjdG8tZHNtLTI2IiwiYXV0aF90aW1lIjoxNzczNzc4NjU2LCJ1c2VyX2lkIjoicW45c2JqUlVzb1pEMDRjSjg5QklNbXA1cVFXMiIsInN1YiI6InFuOXNialJVc29aRDA0Y0o4OUJJTW1wNXFRVzIiLCJpYXQiOjE3NzM3Nzg2NTYsImV4cCI6MTc3Mzc4MjI1NiwiZW1haWwiOiJhZG1pbkBhZG1pbi5lcyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJhZG1pbkBhZG1pbi5lcyJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.V2knj22DvaTiCkQf5jt5mdMWXu3z9ODWkaexWW5jo6AO_s6eGgPYJvddv9M-_IdRnmQgb254_x4tTA4y_DQVWxPoywpTKvdt3BAmTkXXfmG0EEM2dkLwLHdVcm1TDXINo-Z0xxILZvApeLKitmFMyD4Xn1qOH5GRPiSumb_9syVt-Q_RaPAbarEOQUrTJRKG8agSIDuAPPr-v2hJ0MWwNywTub2mOhhiYkrNxGTvX2gvsxpnG1yeQo0pi4HsCP_bBn0JxL62WqWAVjrDfAxRwNU2HHfOAVEQX_R8MTW27HxY41fbnNfVaUkBLjV6AhaRl1L4DtTHrb_Mq_95vCr_1A"

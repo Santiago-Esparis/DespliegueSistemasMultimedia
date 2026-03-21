@@ -25,6 +25,7 @@ const FirebaseCommentRepository: CommentRepository = {
                     id: key,
                     idMovie: response.data[key].idMovie,
                     idUser: response.data[key].idUser,
+                    userEmail: response.data[key].userEmail,
                     commentDate: response.data[key].commentDate,
                     comment: response.data[key].comment
                 })
@@ -58,7 +59,8 @@ const FirebaseCommentRepository: CommentRepository = {
 
                     idMovie: response.data[key].idMovie,
                     idUser: response.data[key].idUser,
-
+                    userEmail: response.data[key].userEmail,
+                    
                     commentDate: response.data[key].commentDate,
                     comment: response.data[key].comment
 

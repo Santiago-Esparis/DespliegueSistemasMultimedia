@@ -6,6 +6,7 @@ export interface Comment {
 
     idMovie: string,
     idUser: string,
+    userEmail: string
 
     commentDate: string,
     comment: string

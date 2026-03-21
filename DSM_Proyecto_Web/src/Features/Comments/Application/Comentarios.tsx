@@ -9,16 +9,34 @@ type ComentariosProps = {
 export default function Comentarios({ comentarios }: ComentariosProps) {
     return (
         <div className="comentarios-container">
-            <h2>Comentarios</h2>
-            <ul>
-                {comentarios.map((c) => (
-                    <Comentario
-                        key={c.id}
-                        userid={c.idUser}
-                        comentario={c.comment}
-                    />
-                ))}
-            </ul>
+
+            <h2> Comentarios </h2>
+
+            {comentarios.length === 0 ? (
+
+                <p> Aún no hay comentarios. </p>
+
+            ) : (    
+
+                <ul>
+
+                    {comentarios.map((comentario) => (
+
+                        <Comentario
+                            key={comentario.id ?? `${comentario.idUser}-${comentario.commentDate}`}
+                            comment={comentario}
+                        />
+
+                    ))}
+
+                </ul>
+
+            )
+
+            }
+
         </div>
+
+
     );
 }

@@ -8,7 +8,7 @@ import axios from "axios";
 const FirebaseMovieRepository: MovieRepository = {
 
     getAll: async () => {
-
+ 
         try {
 
             const response: AxiosResponse = await axios.get("https://proyecto-dsm-26-default-rtdb.europe-west1.firebasedatabase.app/Peliculas.json")

@@ -32,3 +32,48 @@
   color: #444;
   line-height: 1.5;
 }
+
+.comentario {
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Fila superior */
+.comentario-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Email + fecha */
+.comentario-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.comentario-user {
+  font-weight: bold;
+}
+
+.comentario-date {
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Botones */
+.comentario-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Caja del comentario */
+.comentario-body {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+}
