@@ -2,6 +2,8 @@
 import { useAuth } from "../../Authentication/Domain/AuthContext";
 import "./LayoutPelicula.css";
 import { useFavouriteList } from "../Domain/FavouriteListContext";
+import favouriteListService from "../Service/favouriteListService";
+import FirebaseFavouriteListRepository from "../Infraestructure/FirebaseFavouriteListRepository";
 
 type LayoutPeliculaProps = {
     movieID: string;
@@ -25,24 +27,45 @@ export default function LayoutPelicula({
 
 
     const { user } = useAuth();
-    const { favouriteList } = useFavouriteList();
+    const { favouriteList, setFavouriteList } = useFavouriteList();
 
-    const isFav = favouriteList?.movieID.includes(movieID) ?? false;
+    const isFav = favouriteList?.movieID?.includes(movieID) ?? false;
     
     const showFavouriteButton = !!user;
     const handlerAgregarFavorito = () => {
 
-        if (!user) return;
+        if (!user || !favouriteList) return;
 
-        console.log("Agregar a favoritos: ", titulo, " usuario: ", user.email)
+        // revisamos por duplicados
+        if (favouriteList.movieID.includes(movieID)) return;
+
+        const updateList = { ...favouriteList, movieID: [...favouriteList.movieID, movieID]};
+
+        setFavouriteList(updateList);
+
+        favouriteListService(FirebaseFavouriteListRepository)
+        .addFav(user.id, user.idToken, updateList)
+        .catch ( (err) => {
+            console.log(err)
+            setFavouriteList(favouriteList)
+        })
 
     }
 
     const handlerQuitarFavorito = () => {
 
-        if (!user) return;
+        if (!user || !favouriteList) return;
 
-        console.log("Quitar de favoritos: ", titulo, " usuario: ", user.email)
+        const updateList = { ...favouriteList, movieID: favouriteList.movieID.filter(id => id !== movieID)};
+
+        setFavouriteList(updateList);
+
+        favouriteListService(FirebaseFavouriteListRepository)
+        .remFav(user.id, user.idToken, updateList)
+        .catch ( (err) => {
+            console.log(err)
+            setFavouriteList(favouriteList)
+        })
 
     }
 
