@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LayoutPelicula from "./LayoutPelicula";
 import { useMovies } from "../Domain/MovieContext";
-import Comentarios from "../../Comments/Application/Comentarios";
+import Comentarios from "../../Comments/View/Comentarios";
 import commentService from "../../Comments/Service/commentService";
 import { useComments } from "../../Comments/Domain/CommentContext";
 import FirebaseCommentRepository from "../../Comments/Infraestructure/FirebaseCommentRepository";
