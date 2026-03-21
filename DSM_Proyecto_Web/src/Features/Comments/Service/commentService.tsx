@@ -10,7 +10,10 @@ const commentService = (repository: CommentRepository) => {
 
         getAll: () => repository.getAll(),
         getByID: (movieID: string) => repository.getByID(movieID),
-        save: (comment: Comment, idToken: string) => repository.save(comment, idToken)
+        save: (comment: Comment, idToken: string) => repository.save(comment, idToken),
+        modifyByID: (comment: Comment, idToken: string) => repository.modifyByID(comment, idToken),
+        deleteComment: (comment: Comment, idToken: string) => repository.deleteComment(comment, idToken)
+
     }
 }
  

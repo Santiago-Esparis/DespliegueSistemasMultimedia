@@ -1,46 +1,62 @@
-.comentarios-container {
-  margin-top: 40px;
-  padding: 25px;
-  background-color: #f2f2f2;
-  border-radius: 10px;
+/* botón añadir comentario */
+
+.comentarios-container button {
+  margin-top: 15px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* título */
-
-.comentarios-container h2 {
-  margin-bottom: 20px;
-  font-size: 22px;
-  font-weight: 600;
+.comentarios-container button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
 }
 
-/* lista */
-
-.comentarios-container ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.comentarios-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-/* cada comentario */
+/* formulario */
 
-.comentarios-container li {
-  background-color: white;
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.comentarios-container form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* usuario */
+/* textarea */
 
-.comentario-user {
-  font-weight: 600;
-  margin-bottom: 4px;
+.comentarios-container textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* texto comentario */
+.comentarios-container textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
 
-.comentario-text {
-  color: #444;
-  line-height: 1.4;
+/* botón enviar (más específico si quieres diferenciarlo) */
+
+.comentarios-container form button {
+  align-self: flex-end;
+  background-color: #28a745;
+}
+
+.comentarios-container form button:hover {
+  background-color: #1e7e34;
 }

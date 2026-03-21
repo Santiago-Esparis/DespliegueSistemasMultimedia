@@ -60,7 +60,7 @@ const FirebaseCommentRepository: CommentRepository = {
                     idMovie: response.data[key].idMovie,
                     idUser: response.data[key].idUser,
                     userEmail: response.data[key].userEmail,
-                    
+
                     commentDate: response.data[key].commentDate,
                     comment: response.data[key].comment
 
@@ -84,7 +84,33 @@ const FirebaseCommentRepository: CommentRepository = {
 
         await axios.post("https://proyecto-dsm-26-default-rtdb.europe-west1.firebasedatabase.app/Comentarios.json?auth=" + idToken + "", comment)
 
-    }
+    },
+
+
+    modifyByID: async (comment: Comment, idToken: string) => {
+
+        if (!comment.id) {
+            throw new Error("El comentario no tiene ID.")
+        }
+
+        await axios.patch("https://proyecto-dsm-26-default-rtdb.europe-west1.firebasedatabase.app/Comentarios/" + comment.id + ".json?auth=" + idToken,
+            {
+                comment: comment.comment,
+                commentDate: comment.commentDate
+            });
+
+    },
+
+
+    deleteComment: async (comment: Comment, idToken: string) => {
+
+        if (!comment.id) {
+            throw new Error("El comentario no tiene ID.")
+        }
+
+        await axios.delete("https://proyecto-dsm-26-default-rtdb.europe-west1.firebasedatabase.app/Comentarios/" + comment.id + ".json?auth=" + idToken);
+
+    },
 
 }
 

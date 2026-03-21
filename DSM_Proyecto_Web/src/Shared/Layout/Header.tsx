@@ -4,13 +4,6 @@ import Menus from "../Components/Menus";
 import { useState } from "react";
 import LoginModal from "../../Features/Authentication/Application/LoginModal";
 import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
-import movieService from "../../Features/Movie/Service/movieService";
-import FirebaseMovieRepository from "../../Features/Movie/Infraestructure/FirebaseMovieRepository";
-import commentService from "../../Features/Comments/Service/commentService";
-import FirebaseCommentRepository from "../../Features/Comments/Infraestructure/FirebaseCommentRepository";
-
-import { useMovies } from "../../Features/Movie/Domain/MovieContext";
-import type { Comment } from "../../Features/Comments/Domain/Comment";
 
 
 interface HeaderProps {
@@ -28,7 +21,6 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
     const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
 
     const { user, setUser } = useAuth();
-    const { setMovies } = useMovies();
 
     // Definimos el menú según si el usuario está logueado
     const menuItems = [
@@ -165,77 +157,6 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
 
             {/* Menú dinámico */}
             <Menus menus={menuItems} />
-
-
-
-
-            <Button
-                variant="outline-primary"
-                onClick={() => {
-                    movieService(FirebaseMovieRepository)
-                        .getAll()
-                        .then((response) => {
-                            console.log(response);
-
-                            setMovies(response);
-                        })
-                        .catch((err) => console.error(err));
-                }}
-            >
-                Get All Movies
-            </Button>
-
-            <Button
-                variant="outline-primary"
-                onClick={() => {
-                    commentService(FirebaseCommentRepository).getAll().then((response) => {
-                        console.log(response)
-                    }).catch((err) => console.error(err));
-                }}
-            >
-                Get All Comments
-            </Button>
-
-            <Button
-                variant="outline-primary"
-                onClick={() => {
-
-                    commentService(FirebaseCommentRepository).getByID("1").then((response) => {
-                        console.log(response)
-                    }).catch((err) => console.error(err));
-
-                }}
-            >
-                Get Filtered Comments by movieID
-            </Button>
-
-            <Button
-                variant="outline-primary"
-                onClick={() => {
-
-                    let newComment: Comment = {
-                        idMovie: "6",
-                        idUser: "ji7eKK8Vj3bjWYqk8z9DnbjeGku2", // id del admin@admin.es
-
-                        commentDate: "15/05/2025",
-                        comment: "Buen anime, gracias por subirlo",
-                        userEmail: "admin@admin.es"
-                    }
-
-                    let idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjczMmNhOTY3MTNiMWRkMTcyMzg1MDg0Y2U5ZjQzODFhZDAwY2VjZTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJveWVjdG8tZHNtLTI2IiwiYXVkIjoicHJveWVjdG8tZHNtLTI2IiwiYXV0aF90aW1lIjoxNzczNzc4NjU2LCJ1c2VyX2lkIjoicW45c2JqUlVzb1pEMDRjSjg5QklNbXA1cVFXMiIsInN1YiI6InFuOXNialJVc29aRDA0Y0o4OUJJTW1wNXFRVzIiLCJpYXQiOjE3NzM3Nzg2NTYsImV4cCI6MTc3Mzc4MjI1NiwiZW1haWwiOiJhZG1pbkBhZG1pbi5lcyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJhZG1pbkBhZG1pbi5lcyJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.V2knj22DvaTiCkQf5jt5mdMWXu3z9ODWkaexWW5jo6AO_s6eGgPYJvddv9M-_IdRnmQgb254_x4tTA4y_DQVWxPoywpTKvdt3BAmTkXXfmG0EEM2dkLwLHdVcm1TDXINo-Z0xxILZvApeLKitmFMyD4Xn1qOH5GRPiSumb_9syVt-Q_RaPAbarEOQUrTJRKG8agSIDuAPPr-v2hJ0MWwNywTub2mOhhiYkrNxGTvX2gvsxpnG1yeQo0pi4HsCP_bBn0JxL62WqWAVjrDfAxRwNU2HHfOAVEQX_R8MTW27HxY41fbnNfVaUkBLjV6AhaRl1L4DtTHrb_Mq_95vCr_1A"
-
-                    commentService(FirebaseCommentRepository).save(newComment, idToken).then(() => {
-                    }).catch((err) => console.error(err));
-
-                    commentService(FirebaseCommentRepository).getByID("1").then((response) => {
-                        console.log(response)
-                    }).catch((err) => console.error(err));
-
-                }}
-            >
-                Post Comment (Hardcodded)
-            </Button>
-
 
         </header>
 

@@ -44,9 +44,6 @@ export default function Comentarios({ comentarios }: ComentariosProps) {
 
         e.preventDefault();
 
-        console.log("Nuevo comentario: ", text);
-
-
         let newComment: Comment = {
 
             idMovie: movieID,
@@ -68,8 +65,6 @@ export default function Comentarios({ comentarios }: ComentariosProps) {
         setShowForm(false);
 
     };
-
-    console.log(user?.id)
 
     return (
         <div className="comentarios-container">
@@ -98,26 +93,32 @@ export default function Comentarios({ comentarios }: ComentariosProps) {
             )}
 
             {user ? (
-                <button onClick={() => setShowForm(!showForm)}>
+                <button
+                    className="btn-toggle"
+                    onClick={() => setShowForm(!showForm)}
+                >
                     {showForm ? "Cancelar" : "Añadir Comentario"}
                 </button>
             ) : (
-                
                 <p>Inicia sesión para añadir comentarios.</p>
             )}
 
-            <p />
 
             {showForm && (
 
                 <form onSubmit={handleSubmit}>
                     <textarea
+                        className="comentario-textarea"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        placeholder="Escribe tu comentario... "
+                        placeholder="Escribe tu comentario..."
                     />
 
-                    <button type="submit" disabled={!text.trim()}>
+                    <button
+                        type="submit"
+                        className="btn-submit"
+                        disabled={!text.trim()}
+                    >
                         Enviar
                     </button>
                 </form>

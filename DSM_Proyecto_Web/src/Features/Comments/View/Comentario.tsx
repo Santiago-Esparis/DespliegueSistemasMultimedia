@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { useAuth } from "../../Authentication/Domain/AuthContext";
 import type { Comment } from "../Domain/Comment";
+import FirebaseCommentRepository from "../Infraestructure/FirebaseCommentRepository";
+import commentService from "../Service/commentService";
 import "./Comentario.css";
 
 type ComentarioProps = {
@@ -10,8 +13,57 @@ export default function Comentario({ comment }: ComentarioProps) {
 
 
   const { user } = useAuth();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(comment.comment)
 
   const isOwner = user?.id === comment.idUser;
+
+
+  const handleDelete = () => {
+
+    if (!user || !comment.id) {
+      console.error("No se puede borrar el comentario.")
+      return;
+    }
+
+    const confirmDelete = window.confirm("¿Seguro que quiere borrar el comentario?")
+    if (!confirmDelete) return;
+
+    commentService(FirebaseCommentRepository)
+      .deleteComment(comment, user.idToken)
+      .then(() => { })
+      .catch()
+
+  }
+
+  const handleEditStart = () => {
+    setIsEditing(true);
+  }
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedText(comment.comment)
+  }
+
+  const handleModify = () => {
+
+    if (!user || !comment.id) {
+      console.error("No se puede borrar el comentario.")
+      return;
+    }
+
+    comment.comment = editedText
+
+    commentService(FirebaseCommentRepository)
+      .modifyByID(comment, user.idToken)
+      .then(() => { })
+      .catch((error) => {
+        console.error("Error al editar:", error);
+      })
+
+    setIsEditing(false)
+
+  }
 
 
 
@@ -35,8 +87,8 @@ export default function Comentario({ comment }: ComentarioProps) {
         {/* Derecha: botones SOLO si es el dueño */}
         {isOwner && (
           <div className="comentario-actions">
-            <button>Editar</button>
-            <button>Borrar</button>
+            <button onClick={handleEditStart}>Editar</button>
+            <button onClick={handleDelete}> Borrar </button>
           </div>
         )}
 
@@ -44,7 +96,28 @@ export default function Comentario({ comment }: ComentarioProps) {
 
       {/* CAJA DEL COMENTARIO */}
       <div className="comentario-body">
-        <p>{comment.comment}</p>
+
+        {isEditing ? (
+          <>
+            <textarea
+              value={editedText}
+              onChange={(e) => setEditedText(e.target.value)}
+              className="comentario-textarea"
+            />
+
+            <div className="comentario-edit-actions">
+              <button onClick={handleModify} disabled={!editedText.trim()}>
+                Guardar
+              </button>
+              <button onClick={handleCancel}>
+                Cancelar
+              </button>
+            </div>
+          </>
+        ) : (
+          <p>{comment.comment}</p>
+        )}
+
       </div>
 
     </li>
