@@ -1,0 +1,49 @@
+.static-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+
+    background-color: #1e1e1e;
+    color: #ffffff;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Título principal */
+.static-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Subtítulos */
+.static-page h2 {
+    margin-top: 25px;
+    font-size: 1.2rem;
+    color: #bbbbbb;
+}
+
+/* Texto */
+.static-page p {
+    margin-top: 10px;
+    line-height: 1.6;
+    color: #dddddd;
+}
+
+/* Separación visual opcional */
+.static-page h2 + p {
+    margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .static-page {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .static-page h1 {
+        font-size: 1.6rem;
+    }
+}

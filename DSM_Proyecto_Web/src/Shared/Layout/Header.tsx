@@ -28,6 +28,8 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
         { title: "Películas", url: "/peliculas" },
         { title: "Series", url: "/series" },
         ...(userLoged ? [{ title: "Mi Lista", url: "/mi-lista" }] : []), // Solo si hay usuario
+        { title: "Contact", url: "/contact" },
+        { title: "Legal", url: "/disclaimer" },
     ];
 
     return (

@@ -4,6 +4,8 @@ import PeliculaPage from "../../Features/Movie/View/PeliculasPage";
 import MoviesView from "../../Features/Movie/View/MoviesView";
 import SeriesView from "../../Features/Movie/View/SeriesView";
 import MiListaView from "../../Features/Movie/View/MiListaView";
+import DisclaimerPage from "../StaticPages/DisclaimerPage";
+import ContactPage from "../StaticPages/ContactPage";
 
 
 
@@ -20,6 +22,8 @@ export default function AppRoutes() {
             <Route path="/pelicula/:id" element={<PeliculaPage />} />
             <Route path="/series" element={<SeriesView />} />
             <Route path="/mi-lista" element={<MiListaView />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
 
         </Routes>
 
