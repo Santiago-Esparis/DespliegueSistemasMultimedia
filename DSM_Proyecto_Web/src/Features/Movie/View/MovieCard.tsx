@@ -1,6 +1,6 @@
 import "./MovieCard.css";
 import { Link } from "react-router-dom";
-import StarsRating from "../../Ratings/Application/Starsrating";
+import StarsRating from "../../Ratings/View/Starsrating";
 
 interface MovieCardProps {
   id: string;

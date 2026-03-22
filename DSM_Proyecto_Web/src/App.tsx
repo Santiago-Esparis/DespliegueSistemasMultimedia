@@ -2,13 +2,13 @@ import './App.css'
 import Header from './Shared/Layout/Header';
 import Footer from './Shared/Layout/Footer';
 import { useEffect, useState } from 'react';
-
-import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
-import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';
-import { CommentProvider } from './Features/Comments/Domain/CommentContext';
-import { FavouriteListProvider } from './Features/Movie/Domain/FavouriteListContext';
 import AppRoutes from './Shared/Layout/AppRoutes';
 import movieService from './Features/Movie/Service/movieService';
+import { RatingProvider } from './Features/Ratings/Domain/RatingContext';
+import { AuthProvider } from './Features/Authentication/Domain/AuthContext';
+import { CommentProvider } from './Features/Comments/Domain/CommentContext';
+import { MovieProvider, useMovies } from './Features/Movie/Domain/MovieContext';
+import { FavouriteListProvider } from './Features/Movie/Domain/FavouriteListContext';
 import FirebaseMovieRepository from './Features/Movie/Infraestructure/FirebaseMovieRepository';
 
 
@@ -52,7 +52,9 @@ function App() {
       <MovieProvider>
         <CommentProvider>
           <FavouriteListProvider>
-            <AppContent />
+            <RatingProvider>
+              <AppContent />
+            </RatingProvider>
           </FavouriteListProvider>
         </CommentProvider>
       </MovieProvider>

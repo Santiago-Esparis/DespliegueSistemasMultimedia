@@ -10,7 +10,7 @@ export default function StarRating({ rating }: Props) {
         <span
           key={star}
         >
-          {rating >= star ? "⭐" : "☆"}
+          {rating >= star ? "⭐" : " ☆ "}
         </span>
       ))}
     </div>

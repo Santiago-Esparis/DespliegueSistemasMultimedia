@@ -4,6 +4,7 @@ import "./LayoutPelicula.css";
 import { useFavouriteList } from "../Domain/FavouriteListContext";
 import favouriteListService from "../Service/favouriteListService";
 import FirebaseFavouriteListRepository from "../Infraestructure/FirebaseFavouriteListRepository";
+import StarView from "../../Ratings/View/StarView";
 
 type LayoutPeliculaProps = {
     movieID: string;
@@ -94,6 +95,10 @@ export default function LayoutPelicula({
                 <div className="pelicula-rating">
                     <div className="rating-number">{rating}</div>
                     <div className="rating-votos">{votos} votos</div>
+
+                    {user && (
+                        <StarView movieID={movieID} />
+                    )}
                 </div>
 
                 {showFavouriteButton && (

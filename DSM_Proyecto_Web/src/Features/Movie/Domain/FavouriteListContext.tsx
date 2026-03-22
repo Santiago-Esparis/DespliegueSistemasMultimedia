@@ -29,7 +29,7 @@ export function useFavouriteList() {
     const context = useContext(FavouriteListContext);
 
     if (!context) {
-        throw new Error("useMovies debe usarse dentro de MovieProvider");
+        throw new Error("useFavouriteList debe usarse dentro de FavouriteListProvider");
     }
 
     return context;
