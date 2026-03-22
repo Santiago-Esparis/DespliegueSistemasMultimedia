@@ -38,7 +38,18 @@ const FirebaseMovieRepository: MovieRepository = {
 
         }
 
-    }
+    },
+
+    updateMovie: async (idToken: string, movie: Movie) => {
+
+        await axios.patch("https://proyecto-dsm-26-default-rtdb.europe-west1.firebasedatabase.app/Peliculas/" + movie.id + ".json?auth=" + idToken,
+            {
+                rating: movie.rating,
+                ratingVotes: movie.ratingVotes,
+            });
+
+    },
+
 
 
 }
