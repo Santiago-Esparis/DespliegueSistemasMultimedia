@@ -6,10 +6,20 @@ import Comentarios from "../../Comments/View/Comentarios";
 import commentService from "../../Comments/Service/commentService";
 import { useComments } from "../../Comments/Domain/CommentContext";
 import FirebaseCommentRepository from "../../Comments/Infraestructure/FirebaseCommentRepository";
+import { useAuth } from "../../Authentication/Domain/AuthContext";
+import { useFavouriteList } from "../Domain/FavouriteListContext";
+import favouriteListService from "../Service/favouriteListService";
+import FirebaseFavouriteListRepository from "../Infraestructure/FirebaseFavouriteListRepository";
 
 
 
 export default function PeliculaPage() {
+
+  const { user } = useAuth();
+  const { movies } = useMovies();
+  const { comments, setComments } = useComments();
+  const { setFavouriteList } = useFavouriteList();
+
 
   const { id } = useParams<{ id: string }>();
 
@@ -20,11 +30,7 @@ export default function PeliculaPage() {
 
   const movieID = id;
 
-
-  const { movies } = useMovies();
-  const { comments, setComments } = useComments();
-
-
+  
   useEffect(() => {
     commentService(FirebaseCommentRepository)
       .getByID(movieID)
@@ -34,6 +40,22 @@ export default function PeliculaPage() {
 
       }).catch((err) => console.error(err));
   }, [movieID])
+
+  useEffect(() => {
+
+    if (!user) return;
+
+    favouriteListService(FirebaseFavouriteListRepository)
+      .getByID(user.id, user.idToken)
+      .then((response) => {
+
+        setFavouriteList(response);
+
+      })
+      .catch((err) => console.error(err))
+
+  }, [user, user?.idToken, movies, setFavouriteList]);
+
 
 
   return (
