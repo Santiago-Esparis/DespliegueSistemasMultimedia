@@ -4,6 +4,7 @@ import Menus from "../Components/Menus";
 import { useState } from "react";
 import LoginModal from "../../Features/Authentication/View/LoginModal";
 import { useAuth } from "../../Features/Authentication/Domain/AuthContext";
+import { Link } from "react-router-dom";
 
 
 interface HeaderProps {
@@ -28,7 +29,7 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
         { title: "Películas", url: "/peliculas" },
         { title: "Series", url: "/series" },
         ...(userLoged ? [{ title: "Mi Lista", url: "/mi-lista" }] : []), // Solo si hay usuario
-        { title: "Contact", url: "/contact" },
+        { title: "Contacto", url: "/contact" },
         { title: "Legal", url: "/disclaimer" },
     ];
 
@@ -39,15 +40,21 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
 
                     {/* Logo */}
                     <Col md={3}>
-                        <div className="header-box">
-                            Logo
-                        </div>
+                        <Link to={"/"}>
+                            <div>
+                                <img
+                                    src="/Images/Logo/ViewPoint_Logo.png"
+                                    className="logo"
+                                    alt="ViewPoint Logo"
+                                />
+                            </div>
+                        </Link>
                     </Col>
 
                     {/* Título */}
                     <Col md={6}>
-                        <div className="header-box">
-                            <h2 className="m-0">Título</h2>
+                        <div>
+                            <h1 className="title m-0">ViewPoint</h1>
                         </div>
                     </Col>
 
@@ -125,12 +132,6 @@ const Header = ({ selectedLang, setSelectedLang, userLoged, setUserLoged }: Head
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
-
-                                            <Dropdown.Item>
-                                                Preferencias
-                                            </Dropdown.Item>
-
-                                            <Dropdown.Divider />
 
                                             <Dropdown.Item
                                                 className="text-danger"
